@@ -2,7 +2,8 @@
  Bot for booking BBDC!! FREE!!
  bc bbdc is a scummy company for limiting tpds viewing and making it really hard to book lol
 
-**USE AT YOUR OWN RISK: I do not take responsibility for any wrong bookings or ip banning from scummy BBDC that may occur from using the bot. **
+**USE AT YOUR OWN RISK:**
+I do not take responsibility for any wrong bookings or ip banning from scummy BBDC that may occur from using the bot.
 
 **Prerequisites:**
 1. Windows
