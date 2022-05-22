@@ -12,7 +12,7 @@
 
 **Launch steps:**
 1. Download latest version from Releases
-2. Unzip the BBDC_3APRAC_BOT_1.0.zip file
+2. Unzip the BBDC_3APRAC_BOT_vXX.zip file
 3. In the unzipped folder, run start_bot.bat
 
 **FAQ**
