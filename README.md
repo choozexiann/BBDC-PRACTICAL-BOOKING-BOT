@@ -19,5 +19,4 @@ I do not take responsibility for any wrong bookings or ip banning from scummy BB
 **FAQ**
 
 **What is "Headless Mode"?**
-
-If "Y" is toggled, Chrome Browser runs without any interface and only on console - great for saving computer resources
+Chrome Browser runs without any interface and only on console - great for saving computer resources
