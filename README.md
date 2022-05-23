@@ -1,5 +1,5 @@
 # BBDC_3APRAC_BOT
-![image](https://user-images.githubusercontent.com/99162756/169842764-7f068ba9-438c-4d6b-8227-8b7b7afd15f0.png)
+![image](https://user-images.githubusercontent.com/99162756/169843272-cfd25133-4efe-4dc0-b27a-3e5b8326a23b.png)
  Bot for booking BBDC!! FREE!!
  BC bbdc is scummy for limiting tpds viewing and making it really hard to book lol
 
