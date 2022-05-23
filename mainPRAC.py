@@ -20,8 +20,6 @@ logging.basicConfig(filename = '3APRAC.log', level = logging.INFO,
                     format = '%(asctime)s:%(message)s')
 
 
-
-
 def open_page(driver, username, password):
     while True:
         try:
@@ -43,26 +41,23 @@ def open_page(driver, username, password):
     user = attrib_decomposer(username, password, database_filename)  # Search for User in DB
     wait.until(EC.visibility_of_element_located((By.NAME, 'txtNRIC'))).send_keys(user.username)
     wait.until(EC.visibility_of_element_located((By.NAME, 'txtpassword'))).send_keys(user.password)
-    print('username and password done')
     login_button = driver.find_element(By.ID, 'loginbtn')
     login_button.click()
     try:
         driver.find_element(By.ID, 'proceed-button').click()
     except NoSuchElementException:
         pass
-    print('[login] login successful')
+    print([3A PRAC ", count, "] no available slots detected")
 
     driver.switch_to.default_content()
     wait.until(EC.frame_to_be_available_and_switch_to_it(driver.find_element(By.NAME, 'leftFrame')))
     wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Booking without Fixed Instructor'))).click()
-    print('[hometoprac] successfully entered prac booking')
 
     # I agree page
     driver.switch_to.default_content()
     frame = driver.find_element(By.NAME, 'mainFrame')
     driver.switch_to.frame(frame)
     wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn"))).click()
-    print("[I agree] accepted")
 
     # booking date/time selection page
     wait = WebDriverWait(driver, 300)
@@ -72,16 +67,12 @@ def open_page(driver, username, password):
     for x in user.month_selection:
         months = driver.find_elements_by_id('checkMonth')
         months[x].click()  # all months
-    print('[pracselect], months done')
     sessions = driver.find_elements_by_name('Session')
     for x in user.time_selection:
         sessions[x].click()  # all sessions
-    print('[pracselect], timesession done')
     for x in user.day_selection:
         days = driver.find_elements_by_name('Day')
         days[x].click()  # all days
-    print('[pracselect], dayselection done')
-    print("[preparation] preparation complete!")
     return
 
 
@@ -99,8 +90,6 @@ def main(username, password, headless = True):
                 driver.quit()
                 driver = initialize_driver(headless)
 
-            print('[openpage] executing openpage')
-
             open_page(driver, username, password)
             count = count + 1
             print("[3A PRAC ", count, "] starting attempt", count)
@@ -112,7 +101,7 @@ def main(username, password, headless = True):
             except NoSuchElementException:
                 pass
 
-            print("[booking] on slots page!")
+            print("[3A PRAC ", count, "] on slots page!")
             # booking process
             wait = WebDriverWait(driver, 10)
             time.sleep(2)
@@ -144,7 +133,7 @@ def main(username, password, headless = True):
 
                         if within_date:
                             print("[3A PRAC ", count, "] date within range found :", date_found)
-                            logging.info("[3A PRAC {}] date within range found.".format(count))
+                            logging.info("[3A PRAC {0}] date {1} within range found.".format(count, date_found))
                             booked_slots.append(str(date_found))
                             for j in range(3,11):
                                 slot_xpath = "/html/body/table/tbody/tr/td[2]/form/table[1]/tbody/tr[10]/td/table/tbody/tr[{}]/td[{}]/input".format(
@@ -205,10 +194,12 @@ def main(username, password, headless = True):
             time.sleep(RESTART_TIME)
 
     except Exception as e:
-        print("[3A PRAC ", count, "] Something went wrong during excecution .")
+        print("[3A PRAC ", count, "] Something went wrong during excecution. Feel free to report this on github")
         print(e)
         logging.critical("[3A PRAC {}] Something went wrong during excecution.".format(count))
         logging.critical("[3A PRAC {0}] {1}.".format(count, e))
+        os.system("pause")
+        sys.exit()
 
 
 
