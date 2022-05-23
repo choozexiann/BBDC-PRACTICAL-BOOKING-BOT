@@ -47,7 +47,7 @@ def open_page(driver, username, password):
         driver.find_element(By.ID, 'proceed-button').click()
     except NoSuchElementException:
         pass
-    print([3A PRAC ", count, "] no available slots detected")
+    print('[3A PRAC ", count, "] no available slots detected")')
 
     driver.switch_to.default_content()
     wait.until(EC.frame_to_be_available_and_switch_to_it(driver.find_element(By.NAME, 'leftFrame')))
