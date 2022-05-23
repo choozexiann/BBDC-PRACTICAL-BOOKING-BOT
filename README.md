@@ -6,7 +6,7 @@
 I do not take responsibility for any wrong bookings or ip banning from scummy BBDC that may occur from using the bot.
 
 **Prerequisites:**
-1. Windows with Chrome installed
+1. Windows with Chrome (https://www.google.com/intl/en_sg/chrome/) and Chrome Driver (https://chromedriver.chromium.org/) installed
 2. Python Version >3.6 with pip installed
 3. Python added to PATH variable in Environment Variables
 
