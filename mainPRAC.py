@@ -6,7 +6,7 @@ from utils import *
 import os
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
+from selenium.common.exceptions import *
 from selenium.webdriver.support import expected_conditions as EC
 import random
 import time
@@ -75,7 +75,6 @@ def open_page(driver, username, password):
     print('[pracselect], months done')
     sessions = driver.find_elements_by_name('Session')
     for x in user.time_selection:
-        sessions = driver.find_elements_by_name('Session')
         sessions[x].click()  # all sessions
     print('[pracselect], timesession done')
     for x in user.day_selection:
@@ -89,21 +88,20 @@ def open_page(driver, username, password):
 def main(username, password, headless = True):
     count = 0
     RESTART_TIME = random.randint(300, 1000)
-    driver = initialize_driver(headless)
+    booked_slots = []
+    driver = None
     # v = random.randint(10, 20)
-    while 1:
-        if driver:
-            driver.quit()
-            driver = initialize_driver(headless)
-        print('[openpage] executing openpage')
-        # try:
-        open_page(driver, username, password)
-        # except:
-        #     print("[fatal] openpage could not execute properly.")
-        #     logging.critical("[fatal] openpage could not execute properly.")
-        #     print("sleeping for {} seconds.".format(RESTART_TIME))
-        #     time.sleep(RESTART_TIME)
-        try:
+    try:
+        while 1:
+            if not driver:
+                driver = initialize_driver(headless)
+            else:
+                driver.quit()
+                driver = initialize_driver(headless)
+
+            print('[openpage] executing openpage')
+
+            open_page(driver, username, password)
             count = count + 1
             print("[3A PRAC ", count, "] starting attempt", count)
             logging.info("[3A PRAC {0}] starting attempt {0}".format(count))
@@ -121,44 +119,36 @@ def main(username, password, headless = True):
 
             try:
                 driver.switch_to.alert.accept()
+
             except NoAlertPresentException:
                 pass
 
             if len(driver.find_elements_by_id("TblSpan2")) == 1:  # [ALL SLOTS BOOKED]
                 print("[3A PRAC ", count, "] no available slots detected")
                 logging.info("[3A PRAC {}] no available slots detected, closing driver".format(count))
-                # print("[3A PRAC ", count, "] delaying reopening page for", int(v), "seconds")
-                # time.sleep(v)
-                # driver = initialize_driver(headless)
-                # open_page(driver, username, password)
-                # print("[3A PRAC ", count, "] delaying for another", v, "seconds")
-                # time.sleep(v)
-                # wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn"))).click()
-                # driver.find_element(By.NAME, 'btnSearch').click()
 
             else:
                 print("[3A PRAC ", count, "] slots detected, checking dates.")
                 logging.info("[3A PRAC {}] slots detected, checking dates.".format(count))
                 print('[3A PRAC', count, '] Removing slots not within date range {} !'.format(user.date_range))
-
                 slots = []
                 table_ended = False
                 row_counter = 3
-
 
                 while not table_ended:
                     date_xpath = "/html/body/table/tbody/tr/td[2]/form/table[1]/tbody/tr[10]/td/table/tbody/tr[{}]/td[1]".format(
                         row_counter)
                     try:
                         date_found = driver.find_element(By.XPATH, date_xpath).text.splitlines()[0]
-                        print("[3A PRAC ", count, "] date found :", date_found)
                         within_date = date_check(date_found, user.date_range)
 
                         if within_date:
+                            print("[3A PRAC ", count, "] date within range found :", date_found)
+                            logging.info("[3A PRAC {}] date within range found.".format(count))
+                            booked_slots.append(str(date_found))
                             for j in range(3,11):
                                 slot_xpath = "/html/body/table/tbody/tr/td[2]/form/table[1]/tbody/tr[10]/td/table/tbody/tr[{}]/td[{}]/input".format(
                                     row_counter, j)
-
                                 try:
                                     slot = driver.find_element(By.XPATH, slot_xpath)
                                     slots.append(slot)
@@ -186,26 +176,40 @@ def main(username, password, headless = True):
                     driver.find_element(By.NAME, 'btnSubmit').click()
                     # Selecting confirm
                     wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@value='Confirm']")))
+                    driver.execute_script("window.confirm = function(){return true;}")
                     driver.find_element_by_xpath("//input[@value='Confirm']").click()
-                    print("[3A PRAC ", count, "] Slot booked! Please check webpage for details")
+                    print("""\
+                    [3A PRAC " {} "] Slot has been booked, unless consecutive or insufficient balance. 
+                    Please check webpage for details)\
+                    """.format(count))
                     logging.info("[3A PRAC {}] Slot booked! Please check webpage for details.".format(count))
                     time.sleep(2)
-                    driver.switch_to.alert.accept()
+
+                    try:
+                        driver.switch_to.alert.accept()
+                    except NoAlertPresentException:
+                        pass
+
                     if len(driver.find_elements_by_id("errtblmsg")) == 1:
                         print("[3A PRAC ", count, "] Error button - may have failed to snatch slot.")
 
                     time.sleep(2)
+
+
             driver.delete_all_cookies()
-            print('[3A PRAC', count, ']deleted all cookies, closing driver')
+            print('[3A PRAC', count, '] deleted all cookies, closing driver')
             driver.quit()
+            print("[3A PRAC ", count, "] slots attempted to book are {}".format(booked_slots))
+            logging.info("[3A PRAC {0}] slots attempted to book are {1}.".format(count, booked_slots))
             print("[3A PRAC ", count, "] attempting to restart script in", RESTART_TIME, "seconds..")
             time.sleep(RESTART_TIME)
 
-        except Exception as e:
-            print("[3A PRAC ", count, "] Something went wrong during excecution .")
-            print(e)
-            logging.critical("[3A PRAC {}] Something went wrong during excecution.".format(count))
-            logging.critical("[3A PRAC {0}] {1}.".format(count, e))
+    except Exception as e:
+        print("[3A PRAC ", count, "] Something went wrong during excecution .")
+        print(e)
+        logging.critical("[3A PRAC {}] Something went wrong during excecution.".format(count))
+        logging.critical("[3A PRAC {0}] {1}.".format(count, e))
+
 
 
 
