@@ -16,7 +16,8 @@ I do not take responsibility for any wrong bookings or ip banning from scummy BB
 2. Unzip the BBDC_3APRAC_BOT_vXX.zip file
 3. In the unzipped folder, run start_bot.bat
 
-**Download**
+**Download:**
+
 https://github.com/choozexiann/BBDC-PRACTICAL-BOOKING-BOT/releases/tag/v1.3
 
 **FAQ**
