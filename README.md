@@ -1,9 +1,13 @@
 # BBDC_3APRAC_BOT
- Bot for booking BBDC!! FREE!!
- bc bbdc is a scummy company for limiting tpds viewing and making it really hard to book lol
+![image](https://user-images.githubusercontent.com/99162756/169843272-cfd25133-4efe-4dc0-b27a-3e5b8326a23b.png)
+
+
+Bot for booking BBDC 3A Practical Lessons.
+BC bbdc is scummy for limiting tpds viewing and making it really hard to book lol
+TPDS one coming soon :)
 
 **USE AT YOUR OWN RISK:**
-I do not take responsibility for any wrong bookings or ip banning from scummy BBDC that may occur from using the bot.
+I do not take responsibility for any wrong bookings or ip banning from BBDC that may occur from using the bot.
 
 **Prerequisites:**
 1. Windows with Chrome (https://www.google.com/intl/en_sg/chrome/) and Chrome Driver (https://chromedriver.chromium.org/) installed
@@ -16,8 +20,11 @@ I do not take responsibility for any wrong bookings or ip banning from scummy BB
 2. Unzip the BBDC_3APRAC_BOT_vXX.zip file
 3. In the unzipped folder, run start_bot.bat
 
+**Download:**
+
+https://github.com/choozexiann/BBDC-PRACTICAL-BOOKING-BOT/releases/tag/v1.3
+
 **FAQ**
 
 **What is "Headless Mode"?**
-
-If "Y" is toggled, Chrome Browser runs without any interface and only on console - great for saving computer resources
+Chrome Browser runs without any interface and only on console - great for saving computer resources
