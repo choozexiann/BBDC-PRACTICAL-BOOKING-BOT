@@ -1,0 +1,58 @@
+2022-05-24 13:01:06,813:[3A PRAC 1] starting attempt 1
+2022-05-24 13:01:13,052:[3A PRAC 1] slots detected, checking dates.
+2022-05-24 13:01:14,597:[3A PRAC 1] all slots did not fall into date range.
+2022-05-24 13:01:16,681:[3A PRAC 1] slots attempted to book are [].
+2022-05-24 13:10:10,755:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822940CA0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/8f349ffe77a0649c2b25479bac7cb143
+2022-05-24 13:10:14,815:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822940C70>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/8f349ffe77a0649c2b25479bac7cb143
+2022-05-24 13:10:18,867:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822940F10>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/8f349ffe77a0649c2b25479bac7cb143
+2022-05-24 13:10:39,550:[3A PRAC 2] starting attempt 2
+2022-05-24 13:10:44,857:[3A PRAC 2] slots detected, checking dates.
+2022-05-24 13:10:46,347:[3A PRAC 2] all slots did not fall into date range.
+2022-05-24 13:10:48,407:[3A PRAC 2] slots attempted to book are [].
+2022-05-24 13:21:26,450:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822941480>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/01567f5e2b6d690fdae8473b8db4dcc5
+2022-05-24 13:21:30,488:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822941F30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/01567f5e2b6d690fdae8473b8db4dcc5
+2022-05-24 13:21:34,530:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822941B70>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/01567f5e2b6d690fdae8473b8db4dcc5
+2022-05-24 13:21:53,657:[3A PRAC 3] starting attempt 3
+2022-05-24 13:22:00,261:[3A PRAC 3] slots detected, checking dates.
+2022-05-24 13:22:01,866:[3A PRAC 3] all slots did not fall into date range.
+2022-05-24 13:22:03,947:[3A PRAC 3] slots attempted to book are [].
+2022-05-24 13:37:45,008:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000298228BF040>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/3314d210d92cd16c851321322f1a059a
+2022-05-24 13:37:49,090:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000298228BD090>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/3314d210d92cd16c851321322f1a059a
+2022-05-24 13:37:53,140:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000298229419F0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/3314d210d92cd16c851321322f1a059a
+2022-05-24 13:38:09,797:[3A PRAC 4] starting attempt 4
+2022-05-24 13:38:15,146:[3A PRAC 4] slots detected, checking dates.
+2022-05-24 13:38:16,722:[3A PRAC 4] all slots did not fall into date range.
+2022-05-24 13:38:18,822:[3A PRAC 4] slots attempted to book are [].
+2022-05-24 13:50:50,907:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822942560>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/a884b578b0df529918ae23c6ab3bb8d7
+2022-05-24 13:50:55,001:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822941F30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/a884b578b0df529918ae23c6ab3bb8d7
+2022-05-24 13:50:59,081:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822941600>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/a884b578b0df529918ae23c6ab3bb8d7
+2022-05-24 14:07:56,840:[3A PRAC 4] Something went wrong during excecution (Error Count: 0).
+2022-05-24 14:07:56,841:[3A PRAC 4] Message: unknown error: DevToolsActivePort file doesn't exist
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00DE7413+2389011]
+	Ordinal0 [0x00D79F61+1941345]
+	Ordinal0 [0x00C6C658+837208]
+	Ordinal0 [0x00C8BB62+965474]
+	Ordinal0 [0x00C8819C+950684]
+	Ordinal0 [0x00C85C51+941137]
+	Ordinal0 [0x00CB8C80+1150080]
+	Ordinal0 [0x00CB88DA+1149146]
+	Ordinal0 [0x00CB3F66+1130342]
+	Ordinal0 [0x00C8E546+976198]
+	Ordinal0 [0x00C8F456+980054]
+	GetHandleVerifier [0x00F99632+1727522]
+	GetHandleVerifier [0x0104BA4D+2457661]
+	GetHandleVerifier [0x00E7EB81+569713]
+	GetHandleVerifier [0x00E7DD76+566118]
+	Ordinal0 [0x00D80B2B+1968939]
+	Ordinal0 [0x00D85988+1989000]
+	Ordinal0 [0x00D85A75+1989237]
+	Ordinal0 [0x00D8ECB1+2026673]
+	BaseThreadInitThunk [0x76E7FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A7E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A4E+238]
+.
+2022-05-24 14:08:00,904:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822941F90>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/a884b578b0df529918ae23c6ab3bb8d7
+2022-05-24 14:08:04,960:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822942620>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/a884b578b0df529918ae23c6ab3bb8d7
+2022-05-24 14:08:09,033:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029822941AB0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/a884b578b0df529918ae23c6ab3bb8d7

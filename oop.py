@@ -7,11 +7,8 @@ class User:
     database_filename = "database.pkl"
 
     def __init__(self, initial_data):
-        # database_filename = "database.pkl"
         for key in initial_data:
             setattr(self, key, initial_data[key])
-        # print('[init], nametest',self.name)
-        # print('[init], vars', vars(self))
 
     @classmethod
     def from_user_input(cls):  # usage: zexian (new instance name) = User.from_user_input()
@@ -19,7 +16,7 @@ class User:
         new_dict = dict.fromkeys(list_of_fields)
         all_dict = {'month_selection': range(0, 12), 'time_selection': range(0, 8), 'day_selection': range(0, 7)}
 
-        print("please follow these format for keying in your values: 'all' or space delimited entreis such as '0 1 2 3 4'' or '0 5 6'.")
+        print("please follow these format for keying in your values: 'all' or space delimited entries such as '0 1 2 3 4'' or '0 5 6'.")
         print()
         print('For date_range type in DD/MM/YY with hyphen, followed by space between the date ranges such as:')
         print('"25/01/22-28/01/22 02/02/22-05/02/22"')

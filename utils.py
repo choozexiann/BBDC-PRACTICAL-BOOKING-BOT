@@ -53,12 +53,9 @@ def check_date_today(website_date, days_within):
 
 
 def save_pickle(self, filename):
-    # print('[save_pickle], vars', vars(self))
     # saving to pickle
     current_list = pickle_loader(filename)
-    # print('[save_pickle], currentlist', current_list)
     current_list.append(self)  # append to list before saving again
-    # print('after append, current list:', current_list)
     pickle_dumper(current_list, database_filename)
 
 
@@ -104,13 +101,19 @@ def initialize_driver(headless=True):
         options.add_argument('--headless')
     options.add_argument("--start-maximized")
     options.add_argument("--disable-extensions")
+    options.add_argument("--no-sandbox")
     options.add_argument("--disable-web-security")
     options.add_argument("--allow-insecure-localhost")
     options.add_argument('--disable-gpu')
+    options.add_argument("--disable-dev-shm-usage")
     options.add_argument('--allow-running-insecure-content')
+    options.add_argument("--disable-browser-side-navigation")
     options.add_argument('--disable-software-rasterizer')
     options.add_argument('--disable-blink-features=AutomationControlled')
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_argument('--ignore-ssl-errors')
+    options.add_argument("--dns-prefetch-disable")
+    options.add_argument("--remote-debugging-port=9222")
+    options.page_load_strategy = 'normal'
     options.add_experimental_option('useAutomationExtension', False)
     options.add_argument('--log-level=3')
     # options.add_argument(f'user-agent={userAgent}')
@@ -130,6 +133,3 @@ def date_check(BBDCdate, date_ranges):
 
 
 database_filename = "database.pkl"
-
-#driver = initialize_driver()
-#driver.get('https://hackersandslackers.com/flask-routes/')

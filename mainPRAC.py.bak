@@ -77,8 +77,8 @@ def open_page(driver, username, password):
 
 
 def main(username, password, headless = True):
-    error_count = 0
     count = 0
+    RESTART_TIME = random.randint(300, 1000)
     booked_slots = []
     driver = None
     # v = random.randint(10, 20)
@@ -89,7 +89,7 @@ def main(username, password, headless = True):
             else:
                 driver.quit()
                 driver = initialize_driver(headless)
-            RESTART_TIME = random.randint(300, 1000)
+
             open_page(driver, username, password)
             count = count + 1
             print("[3A PRAC ", count, "] starting attempt", count)
@@ -119,7 +119,7 @@ def main(username, password, headless = True):
             else:
                 print("[3A PRAC ", count, "] slots detected, checking dates.")
                 logging.info("[3A PRAC {}] slots detected, checking dates.".format(count))
-                print('[3A PRAC ', count, '] Removing slots not within date range {} !'.format(user.date_range))
+                print('[3A PRAC', count, '] Removing slots not within date range {} !'.format(user.date_range))
                 slots = []
                 table_ended = False
                 row_counter = 3
@@ -186,33 +186,20 @@ def main(username, password, headless = True):
 
 
             driver.delete_all_cookies()
-            print('[3A PRAC ', count, '] deleted all cookies, closing driver')
+            print('[3A PRAC', count, '] deleted all cookies, closing driver')
             driver.quit()
             print("[3A PRAC ", count, "] slots attempted to book are {}".format(booked_slots))
             logging.info("[3A PRAC {0}] slots attempted to book are {1}.".format(count, booked_slots))
             print("[3A PRAC ", count, "] attempting to restart script in", RESTART_TIME, "seconds..")
-            print("[3A PRAC ", count, "] press Ctr-C to stop script at any time!")
             time.sleep(RESTART_TIME)
 
     except Exception as e:
         print("[3A PRAC ", count, "] Something went wrong during excecution. Feel free to report this on github")
         print(e)
-        logging.critical("[3A PRAC {0}] Something went wrong during excecution (Error Count: {1}).".format(count, error_count))
+        logging.critical("[3A PRAC {}] Something went wrong during excecution.".format(count))
         logging.critical("[3A PRAC {0}] {1}.".format(count, e))
-
-        if error_count >= 4:
-            print("[3A PRAC ", count, "] Critical error after 4 retries")
-            logging.critical("[3A PRAC {0}] Critical error after 4 retries, shutting down. (Error Count: {1})".format(count, error_count))
-            os.system("pause")
-            sys.exit()
-        else:
-            error_count += 1
-            if driver:
-                driver.quit()
-            error_sleep = random.randint(1000, 2000)
-            print("[3A PRAC {0}] Restarting script now after {2} seconds (Error Count: {1}). Script will exit once error count reaches 4".format(count, error_count, error_sleep))
-            time.sleep(error_sleep)
-            main(username, password, headless)
+        os.system("pause")
+        sys.exit()
 
 
 
