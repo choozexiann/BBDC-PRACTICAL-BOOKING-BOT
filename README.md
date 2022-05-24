@@ -4,7 +4,9 @@
 
 Bot for booking BBDC 3A Practical Lessons.
 
-BC bbdc is scummy for limiting tpds viewing and making it really hard to book lol
+BC bbdc is scummy for limiting tpds viewing and making it really hard to book lol. 
+
+For many with time restraints sometimes the only way is to bot, especially for tpds.
 
 TPDS one coming soon :)
 
