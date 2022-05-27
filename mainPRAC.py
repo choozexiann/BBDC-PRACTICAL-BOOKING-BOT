@@ -13,6 +13,7 @@ import time
 import warnings
 import logging
 
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 global driver
 
@@ -64,13 +65,13 @@ def open_page(driver, username, password):
     driver.switch_to.default_content()
     wait.until(EC.frame_to_be_available_and_switch_to_it(driver.find_element(By.NAME, 'mainFrame')))
     wait.until(EC.visibility_of_element_located((By.ID, "checkMonth")))
-    for x in user.month_selection:
+    for x in range(0, 12):
         months = driver.find_elements_by_id('checkMonth')
         months[x].click()  # all months
     sessions = driver.find_elements_by_name('Session')
-    for x in user.time_selection:
+    for x in range(0, 8):
         sessions[x].click()  # all sessions
-    for x in user.day_selection:
+    for x in range(0, 7):
         days = driver.find_elements_by_name('Day')
         days[x].click()  # all days
     return
@@ -119,7 +120,7 @@ def main(username, password, headless = True):
             else:
                 print("[3A PRAC ", count, "] slots detected, checking dates.")
                 logging.info("[3A PRAC {}] slots detected, checking dates.".format(count))
-                print('[3A PRAC ', count, '] Removing slots not within date range {} !'.format(user.date_range))
+                print('[3A PRAC ', count, '] Removing slots not within date range!')
                 slots = []
                 table_ended = False
                 row_counter = 3
@@ -129,22 +130,19 @@ def main(username, password, headless = True):
                         row_counter)
                     try:
                         date_found = driver.find_element(By.XPATH, date_xpath).text.splitlines()[0]
-                        within_date = date_check(date_found, user.date_range)
-
-                        if within_date:
-                            print("[3A PRAC ", count, "] date within range found :", date_found)
-                            logging.info("[3A PRAC {0}] date {1} within range found.".format(count, date_found))
-                            booked_slots.append(str(date_found))
-                            for j in range(3,11):
+                        user_slots = slots_check(date_found, user.date_range)
+                        if user_slots:
+                            for j in range(3, 11):
                                 slot_xpath = "/html/body/table/tbody/tr/td[2]/form/table[1]/tbody/tr[10]/td/table/tbody/tr[{}]/td[{}]/input".format(
                                     row_counter, j)
                                 try:
                                     slot = driver.find_element(By.XPATH, slot_xpath)
-                                    slots.append(slot)
-
+                                    if int(j - 3) in user_slots:
+                                        slots.append(slot)
+                                        print("[3A PRAC {0}] slot {1} found on date {2}. ".format(count, j-3, date_found))
+                                        logging.info("[3A PRAC {0}] slot {1} found on date {2}. ".format(count, j-3, date_found))
                                 except NoSuchElementException:
                                     continue
-
 
                     except NoSuchElementException:
                         table_ended = True
@@ -221,6 +219,8 @@ if __name__ == "__main__":
     database_filename = "database.pkl"
     if not os.path.isfile("database.pkl"):
         pickle_reset(database_filename)
+    if not os.path.isfile("chromedriver.exe"):
+        download_chromedriver()
     try:
         username = input('BBDC username: ')
         if username == 'reset':

@@ -1,15 +1,12 @@
-
-from datetime import date, timedelta, datetime
 import sys
 sys.path.append('../')
-
 from oop import *
-
 from selenium import webdriver
-
-
+import urllib.request
+from datetime import date, timedelta, datetime
 global username, password
-
+import requests
+import zipfile
 
 def pickle_loader(filename):
     with open(filename, 'rb') as inp:
@@ -65,7 +62,6 @@ def initialize_user(username, password, filename):
     count = None
     database = pickle_loader(filename)
     for i in range(len(database)):
-        # print('[initialization vars] ', vars(database[i]))
         if str(database[i].username) == str(username) and int(database[i].password) == int(password):
             user_data = database[i]
     if user_data is None:
@@ -122,7 +118,20 @@ def initialize_driver(headless=True):
 
     return driver
 
-def date_check(BBDCdate, date_ranges):
+
+def slots_check(BBDCdate, date_ranges):
+    BBDC_datetimeobj = datetime.strptime(BBDCdate, "%d/%m/%Y")
+    for key, value in date_ranges.items():
+        if BBDC_datetimeobj.date() == key.date():
+            return value
+    return False
+
+
+database_filename = "database.pkl"
+
+
+
+def session_check(BBDCdate, date_ranges): #hopefully dict of date times
     within_dates = False
     for i, date_range in enumerate(date_ranges):
         date1 = datetime.strptime(date_range.split('-')[0], "%d/%m/%y")
@@ -132,4 +141,15 @@ def date_check(BBDCdate, date_ranges):
     return within_dates
 
 
-database_filename = "database.pkl"
+
+def download_chromedriver():
+    response = requests.get('https://chromedriver.storage.googleapis.com/LATEST_RELEASE')
+    latest_version = response.content.decode('UTF-8')
+    file_url = ('https://chromedriver.storage.googleapis.com/{}/chromedriver_win32.zip'.format(latest_version))
+    filehandle, _ = urllib.request.urlretrieve(file_url)
+    zip_file_object = zipfile.ZipFile(filehandle, 'r')
+    first_file = zip_file_object.namelist()[0]
+    file = zip_file_object.open(first_file)
+    content = file.read()
+    f = open("chromedriver.exe", "wb").write(content)
+
