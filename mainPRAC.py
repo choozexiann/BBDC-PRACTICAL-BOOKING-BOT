@@ -77,7 +77,7 @@ def open_page(driver, username, password):
     return
 
 
-def main(username, password, headless = True):
+def main(username, password, headless = True, RESTART_TIME = [1000, 1500]):
     error_count = 0
     count = 0
     booked_slots = []
@@ -90,7 +90,7 @@ def main(username, password, headless = True):
             else:
                 driver.quit()
                 driver = initialize_driver(headless)
-            RESTART_TIME = random.randint(300, 1000)
+            cycle_sleep = random.randint(RESTART_TIME[0], RESTART_TIME[1])
             open_page(driver, username, password)
             count = count + 1
             print("[3A PRAC ", count, "] starting attempt", count)
@@ -188,9 +188,9 @@ def main(username, password, headless = True):
             driver.quit()
             print("[3A PRAC ", count, "] slots attempted to book are {}".format(booked_slots))
             logging.info("[3A PRAC {0}] slots attempted to book are {1}.".format(count, booked_slots))
-            print("[3A PRAC ", count, "] attempting to restart script in", RESTART_TIME, "seconds..")
+            print("[3A PRAC ", count, "] attempting to restart script in", cycle_sleep, "seconds..")
             print("[3A PRAC ", count, "] press Ctr-C to stop script at any time!")
-            time.sleep(RESTART_TIME)
+            time.sleep(cycle_sleep)
 
     except Exception as e:
         print("[3A PRAC ", count, "] Something went wrong during excecution. Feel free to report this on github")
@@ -210,7 +210,7 @@ def main(username, password, headless = True):
             error_sleep = random.randint(1000, 2000)
             print("[3A PRAC {0}] Restarting script now after {2} seconds (Error Count: {1}). Script will exit once error count reaches 4".format(count, error_count, error_sleep))
             time.sleep(error_sleep)
-            main(username, password, headless)
+            main(username, password, headless, RESTART_TIME)
 
 
 
@@ -232,9 +232,19 @@ if __name__ == "__main__":
             headless = True
         else:
             headless = False
+        RESTART_TIME = input("""
+        Please key in restart time range in seconds between each cycle of checks (E.g. "200 - 900"). 
+        I typically run 1000-1500 seconds and let it sit for the day.) If the requests are too fast it may lead to ip bans.
+        In the case of IP ban, if your IP is dynamically assigned (DHCP) just restart your wifi after waiting ~24hours, you will change IP.
+        Hit Enter if you wish to use default( 1000-1500 seconds):
+        """)
+        if RESTART_TIME == '':
+            RESTART_TIME = [1000, 1500]
+        else:
+            RESTART_TIME = [int(i) for i in RESTART_TIME.replace(' ', '').split('-')]
     except:
         print('invalid inputs!')
     user = initialize_user(username, password, database_filename)
 
 
-    main(username, password, headless)
+    main(username, password, headless, RESTART_TIME)

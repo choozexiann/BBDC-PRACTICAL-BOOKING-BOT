@@ -27,6 +27,15 @@ class User:
         for key in new_dict:
             if key == 'date_range':
                 print("""\
+                    Session 0: 07:30 - 09:10
+                    Session 1: 09:20 - 11:00
+                    Session 2: 11:30 - 13:10
+                    Session 3: 13:20 - 15:00
+                    Session 4: 15:20 - 17:00
+                    Session 5: 17:10 - 18:50
+                    Session 6: 19:20 - 21:00
+                    Session 7: 21:10 - 22:50
+                    
                     date_range: [DD/MM/YY-DD/MM/YY: X,X,X-X format]. Can use 'all' as well:
                     Examples:
                         06/05/22-08/05/22: all
