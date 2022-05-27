@@ -1,20 +1,16 @@
 # BBDC_3APRAC_BOT
 ![image](https://user-images.githubusercontent.com/99162756/169843272-cfd25133-4efe-4dc0-b27a-3e5b8326a23b.png)
 
-
 Bot for booking BBDC 3A Practical Lessons.
 
 BC bbdc is scummy for limiting tpds viewing and making it really hard to book lol. 
-
-For many with time restraints sometimes the only way is to bot, especially for tpds.
-
 TPDS one coming soon :)
 
 **USE AT YOUR OWN RISK:**
-I do not take responsibility for any wrong bookings or ip banning from BBDC that may occur from using the bot.
+I do not take responsibility for any wrong bookings / ip bookings / blacklisting from BBDC that may occur from using the bot.
 
 **Prerequisites:**
-  1. Windows with Chrome (https://www.google.com/intl/en_sg/chrome/) and Chrome Driver (https://chromedriver.chromium.org/) installed
+  1. Windows with Chrome (https://www.google.com/intl/en_sg/chrome/)
   2. Python Version >3.6 with pip installed
   3. Python added to PATH variable in Environment Variables
 
@@ -22,7 +18,7 @@ I do not take responsibility for any wrong bookings or ip banning from BBDC that
 **Launch steps:**
   1. Download latest version from Releases
   2. Unzip the BBDC_3APRAC_BOT_vXX.zip file
-  3. In the unzipped folder, run start_bot.bat
+  3. In the unzipped folder, run start_bot.bat (Note: it will install **Selenium** and **Chromedriver** (https://chromedriver.chromium.org/) into the working directory)
 
 **Download:**
 
