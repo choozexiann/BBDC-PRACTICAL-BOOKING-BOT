@@ -48,6 +48,13 @@ def open_page(driver, username, password):
         driver.find_element(By.ID, 'proceed-button').click()
     except NoSuchElementException:
         pass
+
+    try:
+        driver.switch_to.alert.accept()
+
+    except NoAlertPresentException:
+        pass
+
     print("[3A PRAC] successfully logged in!")
 
     driver.switch_to.default_content()
@@ -59,6 +66,12 @@ def open_page(driver, username, password):
     frame = driver.find_element(By.NAME, 'mainFrame')
     driver.switch_to.frame(frame)
     wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn"))).click()
+
+    try:
+        driver.switch_to.alert.accept()
+
+    except NoAlertPresentException:
+        pass
 
     # booking date/time selection page
     wait = WebDriverWait(driver, 300)
@@ -94,6 +107,12 @@ def main(username, password, headless = True, RESTART_TIME = [1000, 1500]):
                 time.sleep(5)
             cycle_sleep = random.randint(RESTART_TIME[0], RESTART_TIME[1])
             open_page(driver, username, password)
+            try:
+                driver.switch_to.alert.accept()
+
+            except NoAlertPresentException:
+                pass
+
             count = count + 1
             print("[3A PRAC ", count, "] starting attempt", count)
             logging.info("[3A PRAC {0}] starting attempt {0}".format(count))
@@ -102,6 +121,12 @@ def main(username, password, headless = True, RESTART_TIME = [1000, 1500]):
             try:
                 driver.find_element(By.NAME, 'btnSearch').click()
             except NoSuchElementException:
+                pass
+
+            try:
+                driver.switch_to.alert.accept()
+
+            except NoAlertPresentException:
                 pass
 
             print("[3A PRAC ", count, "] on slots page!")
@@ -230,7 +255,7 @@ if __name__ == "__main__":
         if username == 'reset':
             pickle_reset(database_filename)
             exit()
-        password = int(input('BBDC password: '))
+        password = str(input('BBDC password: '))
         headless = str(input('Headless Chrome (without GUI) [Y/N]'))
         if headless.lower() == 'y':
             headless = True
@@ -238,12 +263,12 @@ if __name__ == "__main__":
             headless = False
         RESTART_TIME = input("""
         Please key in restart time range in seconds between each cycle of checks (E.g. "200 - 900"). 
-        I typically run 1000-1500 seconds and let it sit for the day.) If the requests are too fast it may lead to ip bans.
+        I typically run 1500-2000 seconds and let it sit for the day.) If the requests are too fast it may lead to ip bans.
         In the case of IP ban, if your IP is dynamically assigned (DHCP) just restart your wifi after waiting ~24hours, you will change IP.
         Hit Enter if you wish to use default( 1000-1500 seconds):
         """)
         if RESTART_TIME == '':
-            RESTART_TIME = [1000, 1500]
+            RESTART_TIME = [1500, 2000]
         else:
             RESTART_TIME = [int(i) for i in RESTART_TIME.replace(' ', '').split('-')]
     except:

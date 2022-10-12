@@ -51,7 +51,7 @@ class User:
                     new_dict[key] = str(user_input)
 
                 if key == 'password':
-                    new_dict[key] = int(user_input)
+                    new_dict[key] = str(user_input)
 
                 elif key == 'date_range':
                     date_ranges = dict()
@@ -137,7 +137,7 @@ def user_date_to_dict(date_ranges, user_input):
 
 
 def pickle_reset(filename):  # FOR DEBUGGING
-    sample = {'username': '123A14021999', 'password': 123456,
+    sample = {'username': '123A14021999', 'password': "123456",
               'month_selection': range(0, 1), 'time_selection': range(0, 8),
               'day_selection': range(0, 7), 'date_range': ['01/08/2022-03/08/2022']}
     smple = User(sample)
@@ -152,7 +152,3 @@ def pickle_reset(filename):  # FOR DEBUGGING
 def day_increment(start_date, end_date):
     for n in range(int((end_date - start_date).days) + 1):
         yield start_date + timedelta(n)
-
-
-lol = User.from_user_input()
-print(vars(lol))

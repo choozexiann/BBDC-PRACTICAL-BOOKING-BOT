@@ -31,7 +31,7 @@ def attrib_decomposer(username, password, filename):
     user_data = None
     database = pickle_loader(filename)
     for i in range(len(database)):
-        if str(database[i].username) == str(username) and int(database[i].password) == int(password):
+        if str(database[i].username) == str(username) and database[i].password == password:
             user_data = database[i]
             return user_data
     if user_data is None:
@@ -62,7 +62,7 @@ def initialize_user(username, password, filename):
     count = None
     database = pickle_loader(filename)
     for i in range(len(database)):
-        if str(database[i].username) == str(username) and int(database[i].password) == int(password):
+        if str(database[i].username) == str(username) and database[i].password == password:
             user_data = database[i]
     if user_data is None:
         print('[Initialization], USER NOT FOUND!')
