@@ -1,7 +1,7 @@
 # BBDC 3APRAC BOOKING BOT
 ![image](https://user-images.githubusercontent.com/99162756/169843272-cfd25133-4efe-4dc0-b27a-3e5b8326a23b.png)
 
-Working as of 27/05/22.
+Working as of 11/10/22.
 Bot for booking BBDC 3A Practical Lessons.
 
 
